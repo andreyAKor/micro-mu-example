@@ -1,0 +1,37 @@
+# Информация о приложении
+app:
+  # Номер версии сборки МС
+  version: "0.0.1"
+
+  # Название приложения
+  name: "geo.worker"
+
+  # Отображаемое имя сервиса
+  displayName: "Geo Worker Server"
+
+  # Описание сервиса
+  description: "Geo Worker Server"
+
+# Настройки логгирования
+logging:
+  # Уровень логгирования, варианты: debug, info, warning, error, fatal и panic
+  level: "debug"
+
+# Данные для инициализации сервиса
+micro:
+  # Данные для работы с реестром
+  registry: "nats"
+  registryAddress: "0.0.0.0:4222"
+
+  # Данные для работы с брокером
+  broker: "nats"
+  brokerAddress: "0.0.0.0:4222"
+
+  # Данные для работы с траyспортом
+  transport: "nats"
+  transportAddress: "0.0.0.0:4222"
+
+# Настройки подписки
+subscrption:
+  # Количество воркеров для разгребания очередей
+  workers: 32

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package geo.proto.register;
+
+// Событие на register
+message RegisterEvent {
+	// id ворекра в nats-сети
+	string id = 1;
+
+	// Временная метка операции
+	string ts = 2;
+}

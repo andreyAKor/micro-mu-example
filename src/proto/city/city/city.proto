@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package geo.proto.city;
+
+// Событие запроса на city
+message CityEventRequest {
+	// Имя обменника куда слать событие ответа
+	string responseTopic = 1;
+
+	// Название
+	string name = 2;
+}
+
+// Событие ответа на city
+message CityEventResponse {
+	// Название
+	string name = 1;
+
+	// Список станций
+	repeated string stations = 2;
+
+	// Описание ошибки
+	string error = 3;
+	
+	// Временная метка операции
+	string ts = 4;
+}

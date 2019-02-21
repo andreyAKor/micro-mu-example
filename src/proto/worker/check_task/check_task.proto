@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package geo.proto.check_task;
+
+// Сервис для запроса на CheckTask
+service CheckTask {
+	// Проверка пробивки станции
+	rpc CheckTask(CheckTaskRpcRequest) returns (CheckTaskRpcResponse) {}
+}
+
+// Запрос на CheckTask
+message CheckTaskRpcRequest {
+	// Название
+	string name = 1;
+}
+
+// Ответ на CheckTask
+message CheckTaskRpcResponse {
+	// Признак пробиваемой станции
+	bool inProgress = 1;
+
+	// Описание ошибки
+	string error = 2;
+	
+	// Временная метка операции
+	string ts = 3;
+}

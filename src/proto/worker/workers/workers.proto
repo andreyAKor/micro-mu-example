@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package geo.proto.workers;
+
+// Событие на workers
+message WorkersEvent {
+	// id воркера в nats-сети
+	string id = 1;
+
+	// Общее количество воркеров у воркера
+	uint32 totalWorkers = 2;
+	
+	// Количество свободных воркеров у воркера
+	uint32 freeWorkers = 3;
+
+	// Количество занятых воркеров у воркера
+	uint32 countWorkers = 4;
+
+	// Список данных занятых воркеров у воркера
+	repeated WorkerData workers = 5;
+
+	// Временная метка операции
+	string ts = 6;
+}
+
+// Данные воркера
+message WorkerData {
+	// Название
+	string name = 1;
+}

@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package geo.proto.task.worker.search;
+
+
+// Событие ответа на task.worker.search
+message TaskWorkerSearchRunEventResponse {
+	// Название
+	string name = 2;
+
+	// Описание ошибки
+	string error = 3;
+
+	// Временная метка операции
+	string ts = 4;
+}
+
+
+// Событие лога на task.worker.search
+message TaskWorkerSearchRunEventLog {
+	// Название
+	string name = 2;
+
+	// Структура описания ошибки
+	message Messages {
+		// Описание ошибки
+		string message = 1;
+
+		// Счетчик ошибок
+		uint32 counter = 2;
+
+		// Последняя временная метка ошибки
+		string ts = 3;
+	}
+
+	// Список описаний ошибок
+  	repeated Messages messages = 3;
+
+	// Временная метка операции
+	string ts = 4;
+}
+
+// =======================================
+
+// Сервис для запроса на TaskWorkerSearchRun
+service TaskWorkerSearchRun {
+	// Пробивка станции
+	rpc TaskWorkerSearchRun(TaskWorkerSearchRunRpcRequest) returns (TaskWorkerSearchRunRpcResponse) {}
+}
+
+// Запрос на TaskWorkerSearchRun
+message TaskWorkerSearchRunRpcRequest {
+	// Имя обменника куда слать событие ответа
+	string responseTopic = 1;
+
+	// Имя обменника куда слать событие лога
+	string logTopic = 2;
+
+	// Название
+	string name = 4;
+
+	// Список UUID воркеров
+	repeated string listWorkerUUID = 5;
+}
+
+// Ответ на TaskWorkerSearchRun
+message TaskWorkerSearchRunRpcResponse {
+	// Описание ошибки
+	string error = 1;
+	
+	// Временная метка операции
+	string ts = 2;
+}
+
+// =======================================
+
+// Сервис для запроса на TaskWorkerSearchStop
+service TaskWorkerSearchStop {
+	// Остановка пробивки станции
+	rpc TaskWorkerSearchStop(TaskWorkerSearchStopRpcRequest) returns (TaskWorkerSearchStopRpcResponse) {}
+}
+
+// Запрос на TaskWorkerSearchStop
+message TaskWorkerSearchStopRpcRequest {
+	// Название
+	string name = 2;
+}
+
+// Ответ на TaskWorkerSearchStop
+message TaskWorkerSearchStopRpcResponse {
+	// Описание ошибки
+	string error = 1;
+	
+	// Временная метка операции
+	string ts = 2;
+}
